@@ -10,7 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class QuickIndexViewActivity extends Activity {
 	private ArrayList<Person> names;
 	private ListView listview;
 	private TextView mIndexLayout;
+	private int preIndex = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +46,33 @@ public class QuickIndexViewActivity extends Activity {
 			Collections.sort(names);
 		}
 
+		mBar = (QuickIndexBar) findViewById(R.id.bar);
 		mIndexLayout = (TextView) findViewById(R.id.tv_index_layout);
 		listview = (ListView) findViewById(R.id.list);
 		listview.setAdapter(new PersonAdapter());
+		// 设置选中监听
 		listview.setOnItemClickListener(new QuickIndexContactsItemListener());
+		// 设置滚动监听
+		listview.setOnScrollListener(new OnScrollListener() {
+			
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+			}
+			
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				if (preIndex != firstVisibleItem){
+					// 更新索引
+					int index = names.get(firstVisibleItem).getPinyin().charAt(0) - 'A';
+					mBar.setCurrentSelectedIndex(index);
+					
+					preIndex = firstVisibleItem;
+				}
+			}
+		});
 
-		QuickIndexBar bar = (QuickIndexBar) findViewById(R.id.bar);
-		bar.setOnLetterUpdateListener(new QuickIndexBar.OnLetterUpdateListener() {
+		mBar.setOnLetterUpdateListener(new QuickIndexBar.OnLetterUpdateListener() {
 
 			@Override
 			public void onUpdate(String letter) {
@@ -73,6 +95,7 @@ public class QuickIndexViewActivity extends Activity {
 
 	private Handler mHandler = new Handler();
 	private String[] namesArrs;
+	private QuickIndexBar mBar;
 
 	/* 在索引层中显示索引 */
 	private void showIndexLayout(String letter) {

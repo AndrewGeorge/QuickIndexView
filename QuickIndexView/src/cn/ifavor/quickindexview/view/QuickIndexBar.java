@@ -134,5 +134,15 @@ public class QuickIndexBar extends View{
 			OnLetterUpdateListener onLetterUpdateListener) {
 		this.onLetterUpdateListener = onLetterUpdateListener;
 	}
-
+	
+	/** 设置当前选中的索引 */
+	public void setCurrentSelectedIndex(int index){
+		if (index < 0 || index > 25){
+			return;
+		}
+		
+		this.currentIndex = index;
+		// 重绘
+		invalidate();
+	}
 }
