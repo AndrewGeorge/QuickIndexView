@@ -21,6 +21,7 @@
 
 代码如下：
 
+
 ```java
 // 联系人的字符串数组
 String[] namesStrings = {....}； 
