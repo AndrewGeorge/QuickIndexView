@@ -24,7 +24,6 @@ public class Person implements Comparable<Person>{
 	}
 	@Override
 	public int compareTo(Person another) {
-		// °´×ÖÄ¸Ë³ĞòÅÅĞò
 		return pinyin.compareTo(another.pinyin);
 	}
 }
