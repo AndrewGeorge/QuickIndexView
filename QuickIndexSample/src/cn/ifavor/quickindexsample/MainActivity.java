@@ -22,11 +22,14 @@ public class MainActivity extends Activity {
 	}
 
 	public void click(View view) {
-		String[] namesStrings = { "AA", "何世威", "刘铁", "吕册", "王彦苏", "刘化峰", "沙丽珊",
+		// 示例人名
+		String[] namesStrings = { "AAA", "何世威", "刘铁", "吕册", "王彦苏", "刘化峰", "沙丽珊",
 				"王志会", "姜波", "王昕", "彭莉", "米云龙", "秦勤", "许华", "佟冬蕾", "兰庆伟", "曹宽",
 				"孙成伟", "张大勇", "刘贤宇", "李月", "姚佳媛", "益长虹" };
 		Intent intent = new Intent(this, QuickIndexViewActivity.class);
+		// 设置数据
 		intent.putExtra(Contants.CONTACTS_NAMES, namesStrings);
+		// 开启Activity
 		startActivityForResult(intent, REQUEST_CODE);
 	}
 
@@ -47,6 +50,7 @@ public class MainActivity extends Activity {
 			int index = data.getIntExtra(Contants.INTENT_CONTAC_INDEX, -1);
 			System.out.println(index);
 			
+			// 设置结果值
 			mTvResult.setText("结果："+name);
 		}
 	}
