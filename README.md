@@ -24,6 +24,7 @@
 
 ```java
 // 联系人的字符串数组
+
 String[] namesStrings = {....}； 
 Intent intent = new Intent(this, QuickIndexViewActivity.class);
 intent.putExtra(Contants.CONTACTS_NAMES, namesStrings);
