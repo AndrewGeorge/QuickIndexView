@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import cn.ifavor.quickindexview.bean.Person;
 import cn.ifavor.quickindexview.constants.Contants;
 import cn.ifavor.quickindexview.view.QuickIndexBar;
